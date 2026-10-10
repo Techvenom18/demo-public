@@ -227,7 +227,7 @@ pipeline {
                                 }
 
                                 // Layer 4: health check
-                                sh 'ssh $SSH_OPTS $DEPLOY_USER@$HOST "test -f $REMOTE_DIR/$HEALTH_FILE"'
+                                sh 'ssh $SSH_OPTS $DEPLOY_USER@$HOST "test -f $REMOTE_DIR/nope.html"'
                                 // On the real cPanel also check that the site responds:
                                 // sh 'curl -fsS --max-time 20 https://YOUR-SUBDOMAIN/ > /dev/null'
 
