@@ -37,7 +37,7 @@ function App() {
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#documentation-icon"></use>
           </svg>
-          <h2>Documentation-query</h2>
+          <h2>Documentation-query-fast</h2>
           <p>Your questions, answered</p>
           <ul>
             <li>
