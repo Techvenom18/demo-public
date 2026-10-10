@@ -182,6 +182,7 @@ pipeline {
                 }
             }
             steps {
+                 sh 'echo "build=$BUILD_NUMBER commit=$GIT_COMMIT time=$(date -u +%FT%TZ)" > "$DEPLOY_SRC/version.txt"'
                 // Optional: a newer build waiting at this point cancels an older waiting one
                 milestone(1)
 
