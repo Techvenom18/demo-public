@@ -7,7 +7,13 @@
 #   >>> THIS WORKFLOW DEPLOYS NOTHING. It only connects and runs "whoami",
 #   >>> "uname" and "rsync --version" on the server, then disconnects.
 #
-# Start it manually: Actions tab -> Test connection -> Run workflow.
+# Start it: Actions tab -> Test connection.
+#   - The "Run workflow" BUTTON only appears once this file exists on the
+#     DEFAULT branch (main) - that's a GitHub rule.
+#     Until we merge, the temporary push trigger below runs it automatically
+#     whenever this branch is pushed (remove the push block before final merge).
+#   - After the first run exists, you can also use "Re-run failed jobs"
+#     (handy right after adding the secrets, no new push needed).
 #
 # Requires these secrets FIRST (Settings -> Secrets and variables -> Actions):
 #   SSH_PRIVATE_KEY, SSH_HOST, SSH_PORT, SSH_USER, SSH_KNOWN_HOSTS
@@ -26,7 +32,11 @@
 name: Test connection
 
 on:
-  workflow_dispatch:            # manual button ONLY - never runs on push/PR
+  workflow_dispatch:            # manual button (appears after merge to main)
+  push:
+    branches: [ci/github-actions]   # TEMPORARY: so we can test BEFORE the
+                                    # merge (button needs the file on main).
+                                    # Remove this block before final merge.
 
 # This file only reads the repo.
 permissions:
